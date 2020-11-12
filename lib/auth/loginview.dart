@@ -1,5 +1,3 @@
-
-
 import 'package:Disce/auth/registerview.dart';
 import 'package:Disce/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -32,167 +30,165 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: ListView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
+      backgroundColor: Colors.black,
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              child: Image.asset("asset/images/Wallpaper.png"),
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+            ),
           ),
-          Center(
-              child: Container(
-            decoration: BoxDecoration(
-                color: Colors.redAccent[100],
-                borderRadius: BorderRadius.circular(10)),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 40, left: 30),
-              child: Stack(
-                children: [
-                  Align(child: Image(image: NetworkImage("",)),),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Welcome Back',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 36,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.010,
-                      ),
-                      Text(
-                        'Login to your account!',
-                        style: TextStyle(
-                            color: Colors.red[100],
-                            fontSize: 24,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                ],
+          Container(
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(1),
+                spreadRadius: 30,
+                blurRadius: 50,
+                offset: Offset(0, -1), // changes position of shadow
               ),
-            ),
-            height: 300,
-            width: MediaQuery.of(context).size.width * 0.9,
-          )),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
-            ),
-            Form(
-              key: _formKey,
-              child: Column(
+            ], color: Colors.black),
+            height: 250,
+            width: MediaQuery.of(context).size.width,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ListView(
+                physics: BouncingScrollPhysics(),
                 children: [
-                  Center(
-                    child: Container(
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            controller: _emailController,
-                            decoration: InputDecoration(
-                                border: InputBorder.none, hintText: 'Email'),
-                            validator: (value) {
-                              if (value == null || value == '') {
-                                return 'Email cannot be blank';
-                              }
-                              return null;
-                            },
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(width: 2,color: Colors.grey[900])
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            child: TextFormField(
+                              style: TextStyle(color: Colors.white),
+                              keyboardType: TextInputType.emailAddress,
+                              controller: _emailController,
+                              decoration: InputDecoration(
+                                hintStyle: TextStyle(color: Colors.grey,fontWeight: FontWeight.w700),
+                                  border: InputBorder.none, hintText: 'Email'),
+                              validator: (value) {
+                                if (value == null || value == '') {
+                                  return 'Email cannot be blank';
+                                }
+                                return null;
+                              },
+                            ),
                           ),
                         ),
+                        height: MediaQuery.of(context).size.height * 0.06,
+                        width: MediaQuery.of(context).size.width * 0.85,
                       ),
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width * 0.85,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.02,
+                    ),
+                    Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(width: 2,color: Colors.grey[900])
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            child: TextFormField(
+                              style: TextStyle(color: Colors.white),
+                              controller: _passwordController,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                hintStyle: TextStyle(color: Colors.grey,fontWeight: FontWeight.w700),
+                                  border: InputBorder.none, hintText: 'Password'),
+                              validator: (value) {
+                                if (value == null || value == '') {
+                                  return 'Password cannot be blank';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ),
+                        height: MediaQuery.of(context).size.height * 0.06,
+                        width: MediaQuery.of(context).size.width * 0.85,
+                      ),
+                    ),
+                      ],
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
+                    height: MediaQuery.of(context).size.height * 0.03,
                   ),
                   Center(
                     child: Container(
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: TextFormField(
-                            controller: _passwordController,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                border: InputBorder.none, hintText: 'Password'),
-                            validator: (value) {
-                              if (value == null || value == '') {
-                                return 'Password cannot be blank';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ),
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width * 0.85,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.04,
-            ),
-            Center(
-              child: Container(
-                child: new Material(
-                  child: new InkWell(
-                    onTap: () async {
-                      if (_formKey.currentState.validate()) {
-                        await signInEmail(
-                            _emailController.text, _passwordController.text);
+                      child: new Material(
+                        child: new InkWell(
+                          onTap: () async {
+                            if (_formKey.currentState.validate()) {
+                              await signInEmail(_emailController.text,
+                                  _passwordController.text);
 
-                        // notify feedback model listeners
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => App()));
-                      }
-                    },
-                    child: new Container(
-                      child: Center(
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.03,
-                              fontWeight: FontWeight.w600),
+                              // notify feedback model listeners
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => App()));
+                            }
+                          },
+                          child: new Container(
+                            child: Center(
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height * 0.025,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            height: MediaQuery.of(context).size.height * 0.06,
+                            width: MediaQuery.of(context).size.width * 0.85,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          borderRadius: BorderRadius.circular(20),
                         ),
+                        color: Colors.transparent,
                       ),
                       height: MediaQuery.of(context).size.height * 0.06,
                       width: MediaQuery.of(context).size.width * 0.85,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.pink[200],
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
-                  color: Colors.transparent,
-                ),
-                height: MediaQuery.of(context).size.height * 0.08,
-                width: MediaQuery.of(context).size.width * 0.85,
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple[500],
-                  borderRadius: BorderRadius.circular(10),
-                ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.025,
+                  ),
+                ],
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.025,
-            ),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(onPressed: (){
-          Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => SignUpView()));
+          )
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SignUpView()));
         },
-        backgroundColor: Colors.deepOrange[300],child: Icon(Icons.swap_calls),),
-        );
+        backgroundColor: Colors.grey[900],
+        child: Icon(Icons.swap_calls),
+      ),
+    );
   }
 }
