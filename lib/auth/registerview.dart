@@ -197,6 +197,114 @@ class _SignUpViewState extends State<SignUpView> {
                         ),
                       ],
                     ),
+                  ),Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Center(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                    width: 2, color: Colors.grey[900])),
+                            child: Center(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: TextFormField(
+                                  style: TextStyle(color: Colors.white),
+                                  keyboardType: TextInputType.name,
+                                  controller: _nameController,
+                                  decoration: InputDecoration(
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w700),
+                                      border: InputBorder.none,
+                                      hintText: 'Full Name'),
+                                  validator: (value) {
+                                    if (value == null || value == '') {
+                                      return 'Full Name cannot be blank';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ),
+                            height: MediaQuery.of(context).size.height * 0.06,
+                            width: MediaQuery.of(context).size.width * 0.85,
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        Center(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                    width: 2, color: Colors.grey[900])),
+                            child: Center(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: TextFormField(
+                                  style: TextStyle(color: Colors.white),
+                                  keyboardType: TextInputType.emailAddress,
+                                  controller: _emailController,
+                                  decoration: InputDecoration(
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w700),
+                                      border: InputBorder.none,
+                                      hintText: 'Email'),
+                                  validator: (value) {
+                                    if (value == null || value == '') {
+                                      return 'Email cannot be blank';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ),
+                            height: MediaQuery.of(context).size.height * 0.06,
+                            width: MediaQuery.of(context).size.width * 0.85,
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        Center(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                    width: 2, color: Colors.grey[900])),
+                            child: Center(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: TextFormField(
+                                  style: TextStyle(color: Colors.white),
+                                  controller: _passwordController,
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w700),
+                                      border: InputBorder.none,
+                                      hintText: 'Password'),
+                                  validator: (value) {
+                                    if (value == null || value == '') {
+                                      return 'Password cannot be blank';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ),
+                            height: MediaQuery.of(context).size.height * 0.06,
+                            width: MediaQuery.of(context).size.width * 0.85,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
