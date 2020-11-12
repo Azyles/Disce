@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1086836949546",
+    "firebase_url": "https://disce-83291.firebaseio.com",
+    "project_id": "disce-83291",
+    "storage_bucket": "disce-83291.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086836949546:android:14d723f0d8de3c1a363953",
+        "android_client_info": {
+          "package_name": "com.example.Disce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086836949546-nrkeortmcbngn92epg96qcktunu22aq4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeK7Kmd40bSC5BKBi4Q6_Ie1gCVDNV3a0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1086836949546-nrkeortmcbngn92epg96qcktunu22aq4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

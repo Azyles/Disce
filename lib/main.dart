@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
+
+import 'auth/registerview.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,9 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Disce',
       theme: ThemeData(
-        primarySwatch: Colors.pink[200],
+        primarySwatch: Colors.pink,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: App(),
@@ -19,16 +25,35 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class App extends StatefulWidget {
-  @override
-  _AppState createState() => _AppState();
-}
 
-class _AppState extends State<App> {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
+    return FutureBuilder(
+      // Initialize FlutterFire
+      future: Firebase.initializeApp(),
+      builder: (context, snapshot) {
+        // Check for errors
+        if (snapshot.hasError) {
+          return Text("Something went wrong");
+        }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          FirebaseAuth auth = FirebaseAuth.instance;
+
+          if (auth.currentUser != null) {
+            print("Logged In");
+            //return HomeView();
+          } else {
+            print("Logged Out");
+            return SignUpView();
+          }
+        }
+
+        // Otherwise, show something whilst waiting for initialization to complete
+        return CircularProgressIndicator();
+      },
     );
   }
 }
