@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1086836949546-po5gvnr8vf0sqomcaaa7q8r7cmv0sok0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.Disce",
+            "certificate_hash": "0e5de3ee15e58fac9a4ba905b30215d02103af26"
+          }
+        },
+        {
           "client_id": "1086836949546-nrkeortmcbngn92epg96qcktunu22aq4.apps.googleusercontent.com",
           "client_type": 3
         }

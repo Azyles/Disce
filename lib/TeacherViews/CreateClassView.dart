@@ -3,7 +3,8 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
+import 'package:flutter/services.dart';
 import 'package:nanoid/async/nanoid.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
@@ -18,10 +19,17 @@ class _CreateClassState extends State<CreateClass> {
     var customLengthId = await nanoid(7);
     CollectionReference classData =
         FirebaseFirestore.instance.collection('Classes');
+    CollectionReference userData =
+        FirebaseFirestore.instance.collection('UserData');
+    
     // Call the user's CollectionReference to add a new user
-    return classData
+    classData
         .doc("${customLengthId}")
         .set({
+          'Created': DateFormat.yMMMMd('en_US')
+              .add_jm()
+              .format(new DateTime.now())
+              .toString(),
           'PasswordJoin': passwordJoin,
           'Hidden': hidden,
           'ShareData': sendAnalytics,
@@ -35,8 +43,48 @@ class _CreateClassState extends State<CreateClass> {
           'Password': pwd,
           'TeacherEmail': "${auth.currentUser.email}"
         })
-        .then((value) => print("Logged failed Attempt"))
-        .catchError((error) => print("Failed to add user: $error"));
+        .then((value) => print("Created Class"))
+        .catchError((error) => print("Failed to add class: $error"));
+    
+    classData
+        .doc("${customLengthId}")
+        .collection("Analytics")
+        .doc("Analytics")
+        .set({
+          'AverageGrade': 100,
+          'RateAverage': 100,
+          'LastCleared': "N/A",
+          'LastUpdated': "N/A",
+        })
+        .then((value) => print("Created Chat"))
+        .catchError((error) => print("Failed to add chat: $error"));
+    
+    userData
+        .doc("${auth.currentUser.uid}")
+        .collection("Classes")
+        .doc("${customLengthId}")
+        .set({
+          'ID': "${customLengthId}",
+          'Name': name,
+          'Joined': DateFormat.yMMMMd('en_US')
+              .add_jm()
+              .format(new DateTime.now())
+              .toString(),
+        })
+        .then((value) => print("Created Chat"))
+        .catchError((error) => print("Failed to add chat: $error"));
+
+    classData
+        .doc("${customLengthId}")
+        .collection("Chat")
+        .doc("About")
+        .set({
+          'Online': false,
+          'Clean': false,
+          'LastWiped': "N/A",
+        })
+        .then((value) => print("Created Chat"))
+        .catchError((error) => print("Failed to add chat: $error"));
   }
 
   final _formKey = new GlobalKey<FormState>();

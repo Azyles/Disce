@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:Disce/TeacherViews/CreateClassView.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -111,8 +113,17 @@ class _TeacherDashboardState extends State<TeacherDashboard> {
                         mainAxisSpacing: 10),
                     children:
                         snapshot.data.docs.map((DocumentSnapshot document) {
-                      return new Container(
-                        child: new Text(document.data()['Name']),
+                      return GestureDetector(
+                        onTap: () {
+                          
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey[900],
+                            ),
+                          child: Center(child: new Text(document.data()['Name'],style: TextStyle(color: Colors.white,fontSize: 30),)),
+                        ),
                       );
                     }).toList(),
                   );
