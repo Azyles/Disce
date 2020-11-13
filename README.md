@@ -1,3 +1,3 @@
 # Disce
 
-Details coming soon.
+New perspective on learning.
