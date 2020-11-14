@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:Disce/TeacherViews/CreateClassView.dart';
+import 'package:Disce/TeacherViews/classView.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,6 @@ class TeacherDashboard extends StatefulWidget {
 }
 
 class _TeacherDashboardState extends State<TeacherDashboard> {
-  
   CollectionReference classes = FirebaseFirestore.instance
       .collection('UserData')
       .doc("${auth.currentUser.uid}")
@@ -115,14 +115,56 @@ class _TeacherDashboardState extends State<TeacherDashboard> {
                         snapshot.data.docs.map((DocumentSnapshot document) {
                       return GestureDetector(
                         onTap: () {
-                          
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return ClassView(
+                                document.data()['ID'],
+                                document.data()['Name'],
+                              );
+                            }),
+                          );
                         },
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.grey[900],
-                            ),
-                          child: Center(child: new Text(document.data()['Name'],style: TextStyle(color: Colors.white,fontSize: 30),)),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      'https://source.unsplash.com/featured/?${[
+                                    document.data()['Name']
+                                  ]}'),
+                                  fit: BoxFit.cover,
+                                  colorFilter: ColorFilter.matrix(<double>[
+                                    0.2126,
+                                    0.7152,
+                                    0.0722,
+                                    0,
+                                    0,
+                                    0.2126,
+                                    0.7152,
+                                    0.0722,
+                                    0,
+                                    0,
+                                    0.2126,
+                                    0.7152,
+                                    0.0722,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                  ]))
+                              //border: Border.all(width: 4, color: Colors.grey[900])
+                              ),
+                          child: Center(
+                              child: new Text(
+                            document.data()['Name'],
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white, fontSize: 30),
+                          )),
                         ),
                       );
                     }).toList(),
@@ -133,6 +175,22 @@ class _TeacherDashboardState extends State<TeacherDashboard> {
           )
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.grey[900],
+          child: Center(
+              child: Icon(
+            Icons.add,
+            size: 30,
+            color: Colors.white,
+          )),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return CreateClass();
+              }),
+            );
+          }),
     );
   }
 }
