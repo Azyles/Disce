@@ -4,6 +4,8 @@ import 'package:Disce/TeacherViews/classViewHome.dart';
 import 'package:Disce/TeacherViews/studentsView.dart';
 import 'package:flutter/material.dart';
 
+import 'announcmentView.dart';
+
 class ClassView extends StatefulWidget {
   final String classID;
   final String className;
@@ -67,7 +69,7 @@ class _ClassViewState extends State<ClassView> {
                     tabs: [
                       Tab(text: "Home"),
                       Tab(text: "Students"),
-                      Tab(text: "Announcement"),
+                      Tab(text: "Board"),
                     ],
                   ),
                 ],
@@ -78,7 +80,7 @@ class _ClassViewState extends State<ClassView> {
             children: [
               ClassViewHome(),
               StudentsView(),
-              Icon(Icons.directions_bike),
+              AnnouncementView(),
             ],
           ),
         ),

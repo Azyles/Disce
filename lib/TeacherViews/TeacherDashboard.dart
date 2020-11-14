@@ -159,12 +159,15 @@ class _TeacherDashboardState extends State<TeacherDashboard> {
                                   ]))
                               //border: Border.all(width: 4, color: Colors.grey[900])
                               ),
-                          child: Center(
-                              child: new Text(
-                            document.data()['Name'],
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 30),
-                          )),
+                          child: Container(
+                            color: Colors.black.withOpacity(0.5),
+                            child: Center(
+                                child: new Text(
+                              document.data()['Name'],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.white, fontSize: 30),
+                            )),
+                          ),
                         ),
                       );
                     }).toList(),

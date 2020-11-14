@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 
+import 'TeacherViews/teacherNavigation.dart';
 import 'auth/registerview.dart';
 
 void main() {
@@ -102,7 +103,7 @@ class RouteView extends StatelessWidget {
             return StudentDashboard();
           } else if (data['AccType'] == "Teacher") {
             print("Teacher");
-            return TeacherDashboard();
+            return TeacherNavigation();
           }
         }
 
