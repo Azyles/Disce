@@ -2,7 +2,7 @@ import 'package:Disce/auth/registerview.dart';
 import 'package:Disce/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -37,7 +37,7 @@ class SignInView extends StatelessWidget {
           Align(
             alignment: Alignment.topCenter,
             child: Container(
-              child: Image.asset("asset/images/Wallpaper.png"),
+              child: Image.asset("asset/images/Wallpaper.png",fit: BoxFit.cover,),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
             ),
@@ -51,7 +51,7 @@ class SignInView extends StatelessWidget {
                 offset: Offset(0, -1), // changes position of shadow
               ),
             ], color: Colors.black),
-            height: 250,
+            height: 290,
             width: MediaQuery.of(context).size.width,
             child: Align(
               alignment: Alignment.topCenter,

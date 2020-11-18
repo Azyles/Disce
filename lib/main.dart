@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:Disce/StudentViews/StudentDashboard.dart';
+import 'package:Disce/StudentViews/studentNavigation.dart';
 import 'package:Disce/TeacherViews/TeacherDashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +101,7 @@ class RouteView extends StatelessWidget {
           //return Text("Full Name: ${data['full_name']} ${data['last_name']}");
           if (data['AccType'] == "Student") {
             print("Student");
-            return StudentDashboard();
+            return StudentNavigation();
           } else if (data['AccType'] == "Teacher") {
             print("Teacher");
             return TeacherNavigation();
